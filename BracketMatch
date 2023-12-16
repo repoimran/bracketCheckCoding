@@ -1,0 +1,29 @@
+public static void main(String[] args) {
+		
+		System.out.println(countUnmatched(")))()))()((()")); //   ()  (()) (()((
+		
+		
+		
+	
+
+}
+	public static int countUnmatched(String brackets) {
+		int unmatchedCount = 0;//1
+		Stack<Character> stack = new Stack<>();// (
+		
+		for (char ch : brackets.toCharArray()) {//"((())))(()))))"
+			if (ch == '(') {
+				stack.push(ch);
+			} else if (ch == ')' && !stack.isEmpty()) {
+				stack.pop();
+			} else if (ch == ')' && stack.isEmpty()) {
+				// If there is no opening parenthesis to match
+				unmatchedCount++;
+			}
+		}
+		
+		// Add remaining unmatched opening parentheses to the count
+		unmatchedCount += stack.size();
+		
+		return unmatchedCount;
+	}
